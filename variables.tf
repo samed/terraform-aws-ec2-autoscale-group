@@ -136,6 +136,9 @@ variable "mixed_instances_policy" {
     override = list(object({
       instance_type     = string
       weighted_capacity = number
+      launch_template_specification = optional(object({
+      launch_template_id = string
+      }))
     }))
   })
   default = null

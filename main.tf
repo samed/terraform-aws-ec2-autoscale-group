@@ -226,6 +226,13 @@ resource "aws_autoscaling_group" "default" {
           content {
             instance_type     = lookup(override.value, "instance_type", null)
             weighted_capacity = lookup(override.value, "weighted_capacity", null)
+            dynamic "launch_template_specification" {
+              for_each = try([override.value.launch_template_specification], [])
+              content {
+                launch_template_id = try(launch_template_specification.value.launch_template_id, null)
+                version = var.launch_template_version 
+              }
+            }
           }
         }
       }
