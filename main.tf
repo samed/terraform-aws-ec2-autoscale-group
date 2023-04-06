@@ -20,6 +20,7 @@ resource "aws_launch_template" "default" {
           snapshot_id           = lookup(block_device_mappings.value.ebs, "snapshot_id", null)
           volume_size           = lookup(block_device_mappings.value.ebs, "volume_size", null)
           volume_type           = lookup(block_device_mappings.value.ebs, "volume_type", null)
+          throughput            = lookup(block_device_mappings.value.ebs, "throughput", null)
         }
       }
     }
